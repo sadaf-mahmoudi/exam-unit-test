@@ -8,7 +8,7 @@
     "test-details": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose"
   },
   "keywords": [],
-  "author": "David Andersson",
+  "author": "Sadaf",
   "license": "ISC",
   "description": "Examination i kurs om testning",
   "devDependencies": {
