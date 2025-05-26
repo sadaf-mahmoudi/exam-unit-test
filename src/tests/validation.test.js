@@ -14,12 +14,12 @@ const exampleCartObject = {
 
 describe('Validation', () => {
 
-  // 1. it returns true for a valid cart object
+  
   test('returns true for a valid cart item', () => {
     expect(isCartItem(exampleCartObject)).toBe(true);
   });
 
-  // 2. it returns false for invalid cart objects
+  
   test('returns false if cart item is missing amount', () => {
     const invalidCartItem = {
       id: 2001,
@@ -37,12 +37,12 @@ describe('Validation', () => {
     expect(isCartItem(invalidCartItem)).toBe(false);
   });
 
-  // 3. it returns true for a valid product
+  
   test('returns true for a valid product', () => {
     expect(isProduct(exampleProduct)).toBe(true);
   });
 
-  // 4. it returns false for invalid product objects
+
   test('returns false for invalid product (missing id)', () => {
     const invalidProduct = {
       name: 'Badanka',
