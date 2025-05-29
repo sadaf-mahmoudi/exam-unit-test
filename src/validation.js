@@ -1,20 +1,20 @@
-function isProduct(maybeProduct) {
+function isProduct(maybeProduct) {    //Kollar om ett objekt är en rätt produkt
   if (
-    typeof maybeProduct !== 'object' ||
+    typeof maybeProduct !== 'object' ||   //Kontrollerar att värdet är ett objekt och inte null
     maybeProduct === null ||
     typeof maybeProduct.id !== 'number' ||
     typeof maybeProduct.name !== 'string' ||
     typeof maybeProduct.price !== 'number'
   ) {
-    return false;
+    return false;     //Om någon kontroll misslyckas, funktionen returnerar false, vilket betyder ogiltig produkt
   }
 
-  return true;
+  return true;       //Om allt stämmer: Giltig produkt
 }
 
-function isCartItem(maybeCartItem) {
+function isCartItem(maybeCartItem) {   //Kollar om ett objekt är en rätt cartItem
   if (
-    typeof maybeCartItem !== 'object' ||
+    typeof maybeCartItem !== 'object' ||   //Kontrollerar att det ska vara ett objekt
     maybeCartItem === null ||
     typeof maybeCartItem.id !== 'number' ||
     typeof maybeCartItem.amount !== 'number' ||
