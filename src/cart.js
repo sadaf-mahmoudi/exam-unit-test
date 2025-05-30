@@ -1,45 +1,51 @@
-import { isCartItem, isProduct } from "./validation.js"  
+import { isCartItem, isProduct } from "./validation.js"
 
 let cart = []
 let idCounter = 2002
 
-function getCartItemCount() {  //Returnerar hur många produkter som finns i kundvagnen
+function getCartItemCount() {
   return cart.length
 }
 
-function getItem(index) {   //Returnerar ett kundvagnsobjekt på en viss plats i listan
+function getItem(index) {
   return cart[index]
 }
 
-function getTotalCartValue() {       //Räknar ut det totala priset i kundvagnen, * priset med amount och + allt
-  return cart.reduce((sum, cartItem) => {
+function getTotalCartValue() {
+  return cart.reduce((sum, cartItem) => { 
     return sum + cartItem.item.price * cartItem.amount
-  }, 0)
+  }, 0) //Räknar ut totalsumman i kundvagnen, samt multiplicerar med antal amount för varje produkt
 }
 
-function addToCart(newItem) {  //Tar emot en produktobjekt, kan vara id, name, price
-  if (!isProduct(newItem)) {   //Kollar om den är giltig produkt genom att använda isProduct
+function addToCart(newItem) {
+  if (!isProduct(newItem)) {
     return false
   }
 
-  const cartItem = {       //Skapar en nytt kundvagnsobjekt
-    id: idCounter,
-    amount: 1,
-    item: newItem
+  const existingIndex = cart.findIndex(cartItem => cartItem.item.id === newItem.id)
+
+  if (existingIndex !== -1) { // Om produkten redan finns i vagnen, öka mängden
+    cart[existingIndex].amount += 1
+  } else {
+    const cartItem = {
+      id: idCounter,
+      amount: 1,
+      item: newItem
+    }
+    idCounter++
+    cart.push(cartItem)
   }
 
-  idCounter++            //Ökar med 1 så att nästa produkt får nytt, unikt ID
-  cart.push(cartItem)
-  return true            
+  return true
 }
 
-function removeFromCart(itemId) {     //Tar bort ett objekt från kundvagnen genom filtrering och matchande ID
+function removeFromCart(itemId) {     // Tar bort produkt med ett visst ID
   cart = cart.filter(item => item.id !== itemId)
 }
 
-function editCart(itemId, newValues) {      
-  const index = cart.findIndex(item => item.id === itemId)   
-  if (index !== -1) {   
+function editCart(itemId, newValues) {
+  const index = cart.findIndex(item => item.id === itemId)
+  if (index !== -1) {
     cart[index] = {
       ...cart[index],
       ...newValues

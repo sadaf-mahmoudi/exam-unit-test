@@ -6,57 +6,58 @@ import {
   removeFromCart,
   editCart,
   clearCart
-} from "../cart.js"
+} from "../cart"
 
-describe("Cart", () => {
-  const exampleProduct = { id: 1002, name: "Vattenpistol", price: 40 }
+const exampleProduct = {
+  id: 1001,
+  name: 'Badanka',
+  price: 500
+}
 
-  beforeEach(() => {
-    //Denna kod körs före varje test. Den ser till att kundvagnen är tom innan varje test börjar, så att testerna inte påverkar varandra
+describe('Cart', () => {
+  beforeEach(() => {     //Denna kod körs före varje test. Den ser till att kundvagnen är tom innan varje test börjar, så att testerna inte påverkar varandra
     clearCart()
   })
 
-  test("addToCart adds a new product to the cart", () => {
-    const itemCountBefore = getCartItemCount()
+  test('addToCart adds a new product to the cart', () => {
     addToCart(exampleProduct)
-    const itemCountAfter = getCartItemCount()
-    expect(itemCountAfter).toBe(itemCountBefore + 1)
+    expect(getCartItemCount()).toBe(1)
   })
 
-  test("getCartItemCount returns the correct number", () => {
+  test('addToCart increases amount if product already exists', () => {
     addToCart(exampleProduct)
-    addToCart(exampleProduct)
-    expect(getCartItemCount()).toBe(2)
-  })
-
-  test("getItem returns the correct product", () => {
     addToCart(exampleProduct)
     const item = getItem(0)
-    expect(item.item.name).toBe("Vattenpistol")
+    expect(item.amount).toBe(2)
   })
 
-  test("getTotalCartValue returns the correct total", () => {
-    addToCart(exampleProduct) // 40
-    addToCart(exampleProduct) // 40
-    expect(getTotalCartValue()).toBe(80)
+  test('getTotalCartValue returns correct total value', () => {
+    addToCart(exampleProduct)
+    addToCart(exampleProduct)
+    expect(getTotalCartValue()).toBe(1000)
   })
 
-  test("removeFromCart removes the correct product", () => {
+  test('getItem returns the correct item', () => {
+    addToCart(exampleProduct)
+    const item = getItem(0)
+    expect(item.item.name).toBe("Badanka")
+  })
+
+  test('removeFromCart removes the item by id', () => {
     addToCart(exampleProduct)
     const item = getItem(0)
     removeFromCart(item.id)
     expect(getCartItemCount()).toBe(0)
   })
 
-  test("editCart changes the quantity", () => {
+  test('editCart updates the amount of the item', () => {
     addToCart(exampleProduct)
     const item = getItem(0)
     editCart(item.id, { amount: 5 })
-    const updatedItem = getItem(0)
-    expect(updatedItem.amount).toBe(5)
+    expect(getItem(0).amount).toBe(5)
   })
 
-  test("clearCart empties the cart", () => {
+  test('clearCart empties the cart', () => {
     addToCart(exampleProduct)
     addToCart(exampleProduct)
     clearCart()
