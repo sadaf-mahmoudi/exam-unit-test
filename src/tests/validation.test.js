@@ -12,15 +12,13 @@ const exampleCartObject = {
   item: exampleProduct
 };
 
-describe('Validation', () => {  //Här ligger alla testfall
+describe('Validation', () => {
 
-  
-  test('returns true for a valid cart item', () => {   //Den testar att isCartItem() returnerar true
+  test('returns true for a valid cart item', () => {  //Den testar att isCartItem() returnerar true
     expect(isCartItem(exampleCartObject)).toBe(true);
   });
 
-  
-  test('returns false if cart item is missing amount', () => {  //Returnerar false eftersom amount saknas
+  test('returns false if cart item is missing amount', () => { //Returnerar false eftersom amount saknas
     const invalidCartItem = {
       id: 2001,
       item: exampleProduct
@@ -28,7 +26,7 @@ describe('Validation', () => {  //Här ligger alla testfall
     expect(isCartItem(invalidCartItem)).toBe(false);
   });
 
-  test('returns false if cart item has invalid product inside', () => {  
+  test('returns false if cart item has invalid product inside', () => {
     const invalidCartItem = {
       id: 2001,
       amount: 1,
@@ -37,11 +35,9 @@ describe('Validation', () => {  //Här ligger alla testfall
     expect(isCartItem(invalidCartItem)).toBe(false);
   });
 
-  
   test('returns true for a valid product', () => {
     expect(isProduct(exampleProduct)).toBe(true);
   });
-
 
   test('returns false for invalid product (missing id)', () => {
     const invalidProduct = {
@@ -60,7 +56,7 @@ describe('Validation', () => {  //Här ligger alla testfall
     expect(isProduct(invalidProduct)).toBe(false);
   });
 
-  test('returns false if input is not an object', () => {  
+  test('returns false if input is not an object', () => {
     expect(isProduct(null)).toBe(false);
     expect(isProduct("hej")).toBe(false);
     expect(isProduct(42)).toBe(false);

@@ -3,20 +3,6 @@ import { isCartItem, isProduct } from "./validation.js"
 let cart = []
 let idCounter = 2002
 
-function getCartItemCount() {
-  return cart.length
-}
-
-function getItem(index) {
-  return cart[index]
-}
-
-function getTotalCartValue() {
-  return cart.reduce((sum, cartItem) => { 
-    return sum + cartItem.item.price * cartItem.amount
-  }, 0) //Räknar ut totalsumman i kundvagnen, samt multiplicerar med antal amount för varje produkt
-}
-
 function addToCart(newItem) {
   if (!isProduct(newItem)) {
     return false
@@ -39,7 +25,21 @@ function addToCart(newItem) {
   return true
 }
 
-function removeFromCart(itemId) {     // Tar bort produkt med ett visst ID
+function getCartItemCount() {
+  return cart.length
+}
+
+function getTotalCartValue() {
+  return cart.reduce((sum, cartItem) => {
+    return sum + cartItem.item.price * cartItem.amount
+  }, 0) //Räknar ut totalsumman i kundvagnen, samt multiplicerar med antal amount för varje produkt
+}
+
+function getItem(index) {
+  return cart[index]
+}
+
+function removeFromCart(itemId) {  // Tar bort ett objekt från kundvagnen baserat på dess unika ID
   cart = cart.filter(item => item.id !== itemId)
 }
 
@@ -58,10 +58,10 @@ function clearCart() {
 }
 
 export {
-  getCartItemCount,
-  getItem,
-  getTotalCartValue,
   addToCart,
+  getCartItemCount,
+  getTotalCartValue,
+  getItem,
   removeFromCart,
   editCart,
   clearCart

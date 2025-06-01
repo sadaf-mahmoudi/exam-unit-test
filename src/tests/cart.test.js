@@ -19,25 +19,25 @@ describe('Cart', () => {
     clearCart()
   })
 
-  test('addToCart adds a new product to the cart', () => {
+  test('addToCart adds a new product to the cart', () => {  
     addToCart(exampleProduct)
-    expect(getCartItemCount()).toBe(1)
+    expect(getCartItemCount()).toBe(1)  // Testar att en ny produkt går att lägga till i kundvagnen
   })
 
-  test('addToCart increases amount if product already exists', () => {
-    addToCart(exampleProduct)
+  test('addToCart increases amount if product already exists', () => { 
+    addToCart(exampleProduct)  // Testar att mängden ökas om samma produkt läggs till igen
     addToCart(exampleProduct)
     const item = getItem(0)
     expect(item.amount).toBe(2)
   })
 
-  test('getTotalCartValue returns correct total value', () => {
-    addToCart(exampleProduct)
+  test('getTotalCartValue returns correct total value', () => {  
+    addToCart(exampleProduct)  // Testar att totalpriset i kundvagnen räknas ut korrekt
     addToCart(exampleProduct)
     expect(getTotalCartValue()).toBe(1000)
   })
 
-  test('getItem returns the correct item', () => {
+  test('getItem returns the correct item', () => {  // Testar att rätt produkt hämtas från kundvagnen
     addToCart(exampleProduct)
     const item = getItem(0)
     expect(item.item.name).toBe("Badanka")
