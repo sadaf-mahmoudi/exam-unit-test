@@ -12,7 +12,7 @@ const exampleCartObject = {
   item: exampleProduct
 };
 
-describe('Validation', () => {
+describe('Validation', () => {  //Valideringstester börjar här för isCartItem
 
   test('returns true for a valid cart item', () => {  //Den testar att isCartItem() returnerar true
     expect(isCartItem(exampleCartObject)).toBe(true);
@@ -35,6 +35,7 @@ describe('Validation', () => {
     expect(isCartItem(invalidCartItem)).toBe(false);
   });
 
+  //Här börjar testerna för isProduct
   test('returns true for a valid product', () => {
     expect(isProduct(exampleProduct)).toBe(true);
   });
@@ -56,6 +57,7 @@ describe('Validation', () => {
     expect(isProduct(invalidProduct)).toBe(false);
   });
 
+//Här avslutar den describe-blocket för alla valideringstester, den tillhör describe('Validation', () => { ... })
   test('returns false if input is not an object', () => {
     expect(isProduct(null)).toBe(false);
     expect(isProduct("hej")).toBe(false);

@@ -3,7 +3,7 @@ import { isCartItem, isProduct } from "./validation.js"
 let cart = []
 let idCounter = 2002
 
-function addToCart(newItem) {
+function addToCart(newItem) {  
   if (!isProduct(newItem)) {
     return false
   }
@@ -13,7 +13,7 @@ function addToCart(newItem) {
   if (existingIndex !== -1) { // Om produkten redan finns i vagnen, öka mängden
     cart[existingIndex].amount += 1
   } else {
-    const cartItem = {
+    const cartItem = {  
       id: idCounter,
       amount: 1,
       item: newItem
@@ -25,7 +25,7 @@ function addToCart(newItem) {
   return true
 }
 
-function getCartItemCount() {
+function getCartItemCount() {  //Returnerar antalet artiklar i kundvagnen
   return cart.length
 }
 
@@ -39,7 +39,7 @@ function getItem(index) {
   return cart[index]
 }
 
-function removeFromCart(itemId) {  // Tar bort ett objekt från kundvagnen baserat på dess unika ID
+function removeFromCart(itemId) {  
   cart = cart.filter(item => item.id !== itemId)
 }
 

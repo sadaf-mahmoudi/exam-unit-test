@@ -15,16 +15,16 @@ function isCartItem(maybeCartItem) {   // Kollar om ett objekt är en rätt cart
 
 function isProduct(maybeProduct) {    // Kollar om ett objekt är en rätt produkt
   if (
-    typeof maybeProduct !== 'object' ||   // Kontrollerar att värdet är ett objekt och inte null
+    typeof maybeProduct !== 'object' ||  
     maybeProduct === null ||
     typeof maybeProduct.id !== 'number' ||
     typeof maybeProduct.name !== 'string' ||
     typeof maybeProduct.price !== 'number'
   ) {
-    return false;     // Om någon kontroll misslyckas, funktionen returnerar false, vilket betyder ogiltig produkt
+    return false;     
   }
 
-  return true;       // Om allt stämmer: Giltig produkt
+  return true;       
 }
 
 export { isCartItem, isProduct };
